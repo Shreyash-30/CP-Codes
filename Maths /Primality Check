@@ -1,0 +1,39 @@
+// No. of divisors & primality check
+ public static int countDiviosrs(int n){
+        int cnt =0; 
+        for(int i =1;i<=n; i++){
+            if(n%i==0)cnt++;
+        }
+        return cnt;
+    }
+    public static int optimal(int n){
+        // i/n is factor then n/i is also a factor
+       
+        int cnt =0;
+        for(int i =1; i*i<=n; i++){
+            if(n%i ==0)cnt++;
+
+            if(i != (n/i))cnt++;
+        }
+        return cnt;
+    }
+    public static int sieve(int n){
+        boolean[] prime = new boolean[n+1];
+        Arrays.fill(prime, true);
+        prime[0]= prime[1] = false;
+
+        for(int i =2; i*i<=n;i++){
+            if(prime[i]){
+                for(int j = i*2; j<=n; j+=i){
+                    prime[j] = false;
+                }
+            }
+        }
+        int cnt =0; 
+        for(boolean flag : prime){
+            if(flag)cnt++;
+        }
+        return cnt;
+    }
+
+
